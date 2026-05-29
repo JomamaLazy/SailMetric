@@ -44,7 +44,7 @@ body{
 }
 
 /* ========================= */
-/* SCROLL REVEAL ANIMATIONS */
+/* SCROLL REVEAL ANIMATIONS  */
 /* ========================= */
 
 .reveal {
@@ -133,14 +133,13 @@ nav{
 
 .hero{
     min-height:100vh;
-    /* Added fixed background and gradient overlay for the title */
     background: 
         radial-gradient(circle at 80% 20%, rgba(53, 182, 255, 0.2) 0%, transparent 50%),
         linear-gradient(180deg, rgba(4,13,22,0.6) 0%, rgba(4,13,22,1) 100%),
         url('https://images.unsplash.com/photo-1530531393604-5853eeebbbdc?q=80&w=2000&auto=format&fit=crop');
     background-size:cover;
     background-position:center;
-    background-attachment: fixed; /* Parallax effect */
+    background-attachment: fixed;
     display:flex;
     align-items:center;
     padding:140px 8% 80px;
@@ -170,7 +169,7 @@ nav{
     font-weight:900;
     margin-bottom:28px;
     letter-spacing: -1.5px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5); /* Helps text pop against background */
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 .hero p{
@@ -1074,55 +1073,39 @@ footer{
     // --- FORMSPREE EMAIL INTEGRATION ---
     const formspreeEndpoint = "https://formspree.io/f/mnjrwldb";
 
-    // Waitlist Form
     const waitlistForm = document.getElementById('waitlistForm');
     const waitlistSuccess = document.getElementById('waitlistSuccess');
-
-    waitlistForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(waitlistForm);
-
-        fetch(formspreeEndpoint, {
-            method: "POST",
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                waitlistForm.style.display = 'none';
-                waitlistSuccess.style.display = 'block';
-                waitlistForm.reset();
-            } else {
-                alert("Oops! There was a problem submitting your email.");
-            }
-        }).catch(error => {
-            alert("Oops! Network error. Please try again.");
+    if(waitlistForm) {
+        waitlistForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(waitlistForm);
+            fetch(formspreeEndpoint, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } })
+            .then(response => {
+                if (response.ok) {
+                    waitlistForm.style.display = 'none';
+                    waitlistSuccess.style.display = 'block';
+                    waitlistForm.reset();
+                } else { alert("Oops! There was a problem submitting your email."); }
+            }).catch(error => { alert("Oops! Network error. Please try again."); });
         });
-    });
+    }
 
-    // Contact Form
     const contactForm = document.getElementById('contactForm');
     const contactSuccess = document.getElementById('contactSuccess');
-
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(contactForm);
-
-        fetch(formspreeEndpoint, {
-            method: "POST",
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                contactForm.style.display = 'none';
-                contactSuccess.style.display = 'block';
-                contactForm.reset();
-            } else {
-                alert("Oops! There was a problem sending your message.");
-            }
-        }).catch(error => {
-            alert("Oops! Network error. Please try again.");
+    if(contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            fetch(formspreeEndpoint, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } })
+            .then(response => {
+                if (response.ok) {
+                    contactForm.style.display = 'none';
+                    contactSuccess.style.display = 'block';
+                    contactForm.reset();
+                } else { alert("Oops! There was a problem sending your message."); }
+            }).catch(error => { alert("Oops! Network error. Please try again."); });
         });
-    });
+    }
 
     // --- MOUSE TRACKING GLOW FOR FEATURES ---
     document.querySelectorAll('.feature-card').forEach(card => {
@@ -1131,47 +1114,51 @@ footer{
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             const glow = card.querySelector('.feature-glow');
-            glow.style.left = `${x}px`;
-            glow.style.top = `${y}px`;
+            if(glow) {
+                glow.style.left = `${x}px`;
+                glow.style.top = `${y}px`;
+            }
         });
     });
 
     // --- TFT SIMULATOR ---
     const gaugeContainer = document.getElementById('tft-gauge-container');
-    const MAX_GAUGE_BLOCKS = 18;
-    for(let i=0; i<MAX_GAUGE_BLOCKS; i++) {
-        let block = document.createElement('div');
-        block.className = 'gauge-segment';
-        gaugeContainer.appendChild(block);
+    if (gaugeContainer) {
+        const MAX_GAUGE_BLOCKS = 18;
+        for(let i=0; i<MAX_GAUGE_BLOCKS; i++) {
+            let block = document.createElement('div');
+            block.className = 'gauge-segment';
+            gaugeContainer.appendChild(block);
+        }
+        const gaugeBlocksArray = document.querySelectorAll('.gauge-segment');
+
+        const ctrlSpeed = document.getElementById('ctrl-speed'), ctrlHeel = document.getElementById('ctrl-heel'), ctrlHdg = document.getElementById('ctrl-hdg');
+        const txtSpeedVal = document.getElementById('ctrl-speed-val'), txtHeelVal = document.getElementById('ctrl-heel-val'), txtHdgVal = document.getElementById('ctrl-hdg-val');
+        const tftSpeed = document.getElementById('tft-speed-val'), tftHeelText = document.getElementById('tft-heel-text'), tftHdgText = document.getElementById('tft-hdg-text'), tftHeelBubble = document.getElementById('tft-heel-bubble'), tftShiftStatus = document.getElementById('tft-shift-status');
+
+        function padZero(num) { return num.toString().padStart(3, '0'); }
+
+        function updateSimulation() {
+            const speed = parseFloat(ctrlSpeed.value), heel = parseFloat(ctrlHeel.value), hdg = parseInt(ctrlHdg.value);
+            
+            txtSpeedVal.innerText = speed.toFixed(1) + ' kts'; tftSpeed.innerText = speed.toFixed(1);
+            let activeBlocks = Math.floor((speed / 15) * MAX_GAUGE_BLOCKS);
+            gaugeBlocksArray.forEach((b, i) => { b.className = 'gauge-segment'; if(i < activeBlocks) { b.classList.add('active'); if(i > 13) b.classList.add('high'); }});
+
+            let heelDir = heel < 0 ? 'L' : (heel > 0 ? 'R' : ''); let absHeel = Math.abs(heel).toFixed(1);
+            txtHeelVal.innerHTML = `${absHeel}&deg; ${heelDir}`; tftHeelText.innerHTML = `HEEL: ${absHeel}&deg; ${heelDir}`;
+            if(Math.abs(heel) > 20) { tftHeelText.style.color = 'var(--tft-alert)'; tftHeelBubble.style.background = 'var(--tft-alert)'; } else { tftHeelText.style.color = 'var(--tft-warn)'; tftHeelBubble.style.background = 'var(--tft-warn)'; }
+            tftHeelBubble.style.left = `${50 + (heel * (40 / 30))}%`;
+
+            txtHdgVal.innerHTML = `${padZero(hdg)}&deg;`; tftHdgText.innerHTML = `HDG: ${padZero(hdg)}&deg;`;
+            let diff = hdg - 45; if (diff > 180) diff -= 360; if (diff < -180) diff += 360;
+            if (diff === 0) { tftShiftStatus.innerHTML = "NEUTRAL (0&deg;)"; tftShiftStatus.className = "bottom-value"; tftShiftStatus.style.color = "var(--tft-text)"; } 
+            else if (diff > 0) { tftShiftStatus.innerHTML = `LIFT (+${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-lift"; } 
+            else { tftShiftStatus.innerHTML = `HEADER (${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-header"; }
+        }
+        ctrlSpeed.addEventListener('input', updateSimulation); ctrlHeel.addEventListener('input', updateSimulation); ctrlHdg.addEventListener('input', updateSimulation);
+        updateSimulation();
     }
-    const gaugeBlocksArray = document.querySelectorAll('.gauge-segment');
-
-    const ctrlSpeed = document.getElementById('ctrl-speed'), ctrlHeel = document.getElementById('ctrl-heel'), ctrlHdg = document.getElementById('ctrl-hdg');
-    const txtSpeedVal = document.getElementById('ctrl-speed-val'), txtHeelVal = document.getElementById('ctrl-heel-val'), txtHdgVal = document.getElementById('ctrl-hdg-val');
-    const tftSpeed = document.getElementById('tft-speed-val'), tftHeelText = document.getElementById('tft-heel-text'), tftHdgText = document.getElementById('tft-hdg-text'), tftHeelBubble = document.getElementById('tft-heel-bubble'), tftShiftStatus = document.getElementById('tft-shift-status');
-
-    function padZero(num) { return num.toString().padStart(3, '0'); }
-
-    function updateSimulation() {
-        const speed = parseFloat(ctrlSpeed.value), heel = parseFloat(ctrlHeel.value), hdg = parseInt(ctrlHdg.value);
-        
-        txtSpeedVal.innerText = speed.toFixed(1) + ' kts'; tftSpeed.innerText = speed.toFixed(1);
-        let activeBlocks = Math.floor((speed / 15) * MAX_GAUGE_BLOCKS);
-        gaugeBlocksArray.forEach((b, i) => { b.className = 'gauge-segment'; if(i < activeBlocks) { b.classList.add('active'); if(i > 13) b.classList.add('high'); }});
-
-        let heelDir = heel < 0 ? 'L' : (heel > 0 ? 'R' : ''); let absHeel = Math.abs(heel).toFixed(1);
-        txtHeelVal.innerHTML = `${absHeel}&deg; ${heelDir}`; tftHeelText.innerHTML = `HEEL: ${absHeel}&deg; ${heelDir}`;
-        if(Math.abs(heel) > 20) { tftHeelText.style.color = 'var(--tft-alert)'; tftHeelBubble.style.background = 'var(--tft-alert)'; } else { tftHeelText.style.color = 'var(--tft-warn)'; tftHeelBubble.style.background = 'var(--tft-warn)'; }
-        tftHeelBubble.style.left = `${50 + (heel * (40 / 30))}%`;
-
-        txtHdgVal.innerHTML = `${padZero(hdg)}&deg;`; tftHdgText.innerHTML = `HDG: ${padZero(hdg)}&deg;`;
-        let diff = hdg - 45; if (diff > 180) diff -= 360; if (diff < -180) diff += 360;
-        if (diff === 0) { tftShiftStatus.innerHTML = "NEUTRAL (0&deg;)"; tftShiftStatus.className = "bottom-value"; tftShiftStatus.style.color = "var(--tft-text)"; } 
-        else if (diff > 0) { tftShiftStatus.innerHTML = `LIFT (+${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-lift"; } 
-        else { tftShiftStatus.innerHTML = `HEADER (${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-header"; }
-    }
-    ctrlSpeed.addEventListener('input', updateSimulation); ctrlHeel.addEventListener('input', updateSimulation); ctrlHdg.addEventListener('input', updateSimulation);
-    updateSimulation();
 </script>
 
 </body>
