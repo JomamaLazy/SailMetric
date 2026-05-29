@@ -41,66 +41,10 @@ body{
     color: var(--text-main);
     overflow-x:hidden;
     -webkit-font-smoothing: antialiased;
-    position: relative;
 }
 
 /* ========================= */
-/* WATER EFFECTS (NEW)       */
-/* ========================= */
-
-/* 1. Sea Spray Droplets (Lens Effect) */
-.droplet {
-    position: fixed;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow:
-        inset 2px 2px 5px rgba(255, 255, 255, 0.6),
-        inset -2px -2px 5px rgba(0, 0, 0, 0.2),
-        1px 3px 6px rgba(0, 0, 0, 0.3);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    pointer-events: none; /* So you can click right through them */
-    z-index: 9999;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    animation: drip forwards linear;
-}
-
-@keyframes drip {
-    0% { transform: scale(0) translateY(0); opacity: 0; }
-    5% { transform: scale(1) translateY(2px); opacity: 1; }
-    80% { opacity: 1; transform: scale(0.95) translateY(30px); }
-    100% { transform: scale(0.5) translateY(50px); opacity: 0; }
-}
-
-/* 2. Background Liquid Splashes (CSS Blobs) */
-.water-blob {
-    position: absolute;
-    background: radial-gradient(circle at 30% 30%, rgba(53, 182, 255, 0.15), rgba(4, 13, 22, 0) 70%);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    animation: morphBlob 12s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 0;
-    filter: drop-shadow(0 0 30px rgba(53, 182, 255, 0.1));
-}
-
-@keyframes morphBlob {
-    0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg) scale(1); }
-    33% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: rotate(10deg) scale(1.05); }
-    66% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: rotate(-5deg) scale(0.95); }
-    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(0deg) scale(1); }
-}
-
-/* Specific Placements for the Water Blobs */
-.blob-1 { top: 15%; left: -10%; width: 600px; height: 600px; }
-.blob-2 { top: 40%; right: -15%; width: 800px; height: 800px; animation-duration: 15s; animation-direction: alternate-reverse; }
-.blob-3 { bottom: 10%; left: 20%; width: 500px; height: 500px; animation-duration: 10s; }
-
-/* Keep section contents above the background blobs */
-section { position: relative; z-index: 1; }
-
-/* ========================= */
-/* SCROLL REVEAL ANIMATIONS  */
+/* SCROLL REVEAL ANIMATIONS */
 /* ========================= */
 
 .reveal {
@@ -189,13 +133,14 @@ nav{
 
 .hero{
     min-height:100vh;
+    /* Added fixed background and gradient overlay for the title */
     background: 
         radial-gradient(circle at 80% 20%, rgba(53, 182, 255, 0.2) 0%, transparent 50%),
         linear-gradient(180deg, rgba(4,13,22,0.6) 0%, rgba(4,13,22,1) 100%),
         url('https://images.unsplash.com/photo-1530531393604-5853eeebbbdc?q=80&w=2000&auto=format&fit=crop');
     background-size:cover;
     background-position:center;
-    background-attachment: fixed;
+    background-attachment: fixed; /* Parallax effect */
     display:flex;
     align-items:center;
     padding:140px 8% 80px;
@@ -225,7 +170,7 @@ nav{
     font-weight:900;
     margin-bottom:28px;
     letter-spacing: -1.5px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5); /* Helps text pop against background */
 }
 
 .hero p{
@@ -867,10 +812,6 @@ footer{
 
 <body>
 
-<div class="water-blob blob-1"></div>
-<div class="water-blob blob-2"></div>
-<div class="water-blob blob-3"></div>
-
 <nav>
     <a href="#" class="logo">SAIL<span>SENSE</span></a>
     <div class="nav-links">
@@ -1130,83 +1071,58 @@ footer{
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // --- RANDOM WATER SPLASH EFFECT ---
-    function createSplash() {
-        // Create 2-5 drops per splash
-        const numDrops = Math.floor(Math.random() * 4) + 2;
-        
-        for (let i = 0; i < numDrops; i++) {
-            const drop = document.createElement('div');
-            drop.classList.add('droplet');
-            
-            // Randomize size, position, and animation speed
-            const size = Math.random() * 20 + 10; // 10px to 30px
-            const startX = Math.random() * window.innerWidth;
-            const startY = Math.random() * (window.innerHeight / 2); // Mostly upper half
-            const duration = Math.random() * 2 + 2; // 2s to 4s
-            
-            drop.style.width = `${size}px`;
-            drop.style.height = `${size + 10}px`; // Slightly taller than wide
-            drop.style.left = `${startX}px`;
-            drop.style.top = `${startY}px`;
-            drop.style.animationDuration = `${duration}s`;
-            
-            document.body.appendChild(drop);
-            
-            // Remove the droplet after animation finishes to keep DOM clean
-            setTimeout(() => {
-                drop.remove();
-            }, duration * 1000);
-        }
-    }
-
-    // Trigger a splash every 3-7 seconds to simulate waves/spray
-    function triggerRandomSplash() {
-        createSplash();
-        const nextSplashTime = Math.random() * 4000 + 3000;
-        setTimeout(triggerRandomSplash, nextSplashTime);
-    }
-    
-    // Start the splash loop
-    setTimeout(triggerRandomSplash, 2000);
-
-
     // --- FORMSPREE EMAIL INTEGRATION ---
     const formspreeEndpoint = "https://formspree.io/f/mnjrwldb";
 
+    // Waitlist Form
     const waitlistForm = document.getElementById('waitlistForm');
     const waitlistSuccess = document.getElementById('waitlistSuccess');
-    if(waitlistForm) {
-        waitlistForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(waitlistForm);
-            fetch(formspreeEndpoint, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } })
-            .then(response => {
-                if (response.ok) {
-                    waitlistForm.style.display = 'none';
-                    waitlistSuccess.style.display = 'block';
-                    waitlistForm.reset();
-                } else { alert("Oops! There was a problem submitting your email."); }
-            }).catch(error => { alert("Oops! Network error. Please try again."); });
-        });
-    }
 
+    waitlistForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(waitlistForm);
+
+        fetch(formspreeEndpoint, {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                waitlistForm.style.display = 'none';
+                waitlistSuccess.style.display = 'block';
+                waitlistForm.reset();
+            } else {
+                alert("Oops! There was a problem submitting your email.");
+            }
+        }).catch(error => {
+            alert("Oops! Network error. Please try again.");
+        });
+    });
+
+    // Contact Form
     const contactForm = document.getElementById('contactForm');
     const contactSuccess = document.getElementById('contactSuccess');
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            fetch(formspreeEndpoint, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } })
-            .then(response => {
-                if (response.ok) {
-                    contactForm.style.display = 'none';
-                    contactSuccess.style.display = 'block';
-                    contactForm.reset();
-                } else { alert("Oops! There was a problem sending your message."); }
-            }).catch(error => { alert("Oops! Network error. Please try again."); });
+
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+
+        fetch(formspreeEndpoint, {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                contactForm.style.display = 'none';
+                contactSuccess.style.display = 'block';
+                contactForm.reset();
+            } else {
+                alert("Oops! There was a problem sending your message.");
+            }
+        }).catch(error => {
+            alert("Oops! Network error. Please try again.");
         });
-    }
+    });
 
     // --- MOUSE TRACKING GLOW FOR FEATURES ---
     document.querySelectorAll('.feature-card').forEach(card => {
@@ -1215,51 +1131,47 @@ footer{
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             const glow = card.querySelector('.feature-glow');
-            if(glow) {
-                glow.style.left = `${x}px`;
-                glow.style.top = `${y}px`;
-            }
+            glow.style.left = `${x}px`;
+            glow.style.top = `${y}px`;
         });
     });
 
     // --- TFT SIMULATOR ---
     const gaugeContainer = document.getElementById('tft-gauge-container');
-    if (gaugeContainer) {
-        const MAX_GAUGE_BLOCKS = 18;
-        for(let i=0; i<MAX_GAUGE_BLOCKS; i++) {
-            let block = document.createElement('div');
-            block.className = 'gauge-segment';
-            gaugeContainer.appendChild(block);
-        }
-        const gaugeBlocksArray = document.querySelectorAll('.gauge-segment');
-
-        const ctrlSpeed = document.getElementById('ctrl-speed'), ctrlHeel = document.getElementById('ctrl-heel'), ctrlHdg = document.getElementById('ctrl-hdg');
-        const txtSpeedVal = document.getElementById('ctrl-speed-val'), txtHeelVal = document.getElementById('ctrl-heel-val'), txtHdgVal = document.getElementById('ctrl-hdg-val');
-        const tftSpeed = document.getElementById('tft-speed-val'), tftHeelText = document.getElementById('tft-heel-text'), tftHdgText = document.getElementById('tft-hdg-text'), tftHeelBubble = document.getElementById('tft-heel-bubble'), tftShiftStatus = document.getElementById('tft-shift-status');
-
-        function padZero(num) { return num.toString().padStart(3, '0'); }
-
-        function updateSimulation() {
-            const speed = parseFloat(ctrlSpeed.value), heel = parseFloat(ctrlHeel.value), hdg = parseInt(ctrlHdg.value);
-            
-            txtSpeedVal.innerText = speed.toFixed(1) + ' kts'; tftSpeed.innerText = speed.toFixed(1);
-            let activeBlocks = Math.floor((speed / 15) * MAX_GAUGE_BLOCKS);
-            gaugeBlocksArray.forEach((b, i) => { b.className = 'gauge-segment'; if(i < activeBlocks) { b.classList.add('active'); if(i > 13) b.classList.add('high'); }});
-
-            let heelDir = heel < 0 ? 'L' : (heel > 0 ? 'R' : ''); let absHeel = Math.abs(heel).toFixed(1);
-            txtHeelVal.innerHTML = `${absHeel}&deg; ${heelDir}`; tftHeelText.innerHTML = `HEEL: ${absHeel}&deg; ${heelDir}`;
-            if(Math.abs(heel) > 20) { tftHeelText.style.color = 'var(--tft-alert)'; tftHeelBubble.style.background = 'var(--tft-alert)'; } else { tftHeelText.style.color = 'var(--tft-warn)'; tftHeelBubble.style.background = 'var(--tft-warn)'; }
-            tftHeelBubble.style.left = `${50 + (heel * (40 / 30))}%`;
-
-            txtHdgVal.innerHTML = `${padZero(hdg)}&deg;`; tftHdgText.innerHTML = `HDG: ${padZero(hdg)}&deg;`;
-            let diff = hdg - 45; if (diff > 180) diff -= 360; if (diff < -180) diff += 360;
-            if (diff === 0) { tftShiftStatus.innerHTML = "NEUTRAL (0&deg;)"; tftShiftStatus.className = "bottom-value"; tftShiftStatus.style.color = "var(--tft-text)"; } 
-            else if (diff > 0) { tftShiftStatus.innerHTML = `LIFT (+${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-lift"; } 
-            else { tftShiftStatus.innerHTML = `HEADER (${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-header"; }
-        }
-        ctrlSpeed.addEventListener('input', updateSimulation); ctrlHeel.addEventListener('input', updateSimulation); ctrlHdg.addEventListener('input', updateSimulation);
-        updateSimulation();
+    const MAX_GAUGE_BLOCKS = 18;
+    for(let i=0; i<MAX_GAUGE_BLOCKS; i++) {
+        let block = document.createElement('div');
+        block.className = 'gauge-segment';
+        gaugeContainer.appendChild(block);
     }
+    const gaugeBlocksArray = document.querySelectorAll('.gauge-segment');
+
+    const ctrlSpeed = document.getElementById('ctrl-speed'), ctrlHeel = document.getElementById('ctrl-heel'), ctrlHdg = document.getElementById('ctrl-hdg');
+    const txtSpeedVal = document.getElementById('ctrl-speed-val'), txtHeelVal = document.getElementById('ctrl-heel-val'), txtHdgVal = document.getElementById('ctrl-hdg-val');
+    const tftSpeed = document.getElementById('tft-speed-val'), tftHeelText = document.getElementById('tft-heel-text'), tftHdgText = document.getElementById('tft-hdg-text'), tftHeelBubble = document.getElementById('tft-heel-bubble'), tftShiftStatus = document.getElementById('tft-shift-status');
+
+    function padZero(num) { return num.toString().padStart(3, '0'); }
+
+    function updateSimulation() {
+        const speed = parseFloat(ctrlSpeed.value), heel = parseFloat(ctrlHeel.value), hdg = parseInt(ctrlHdg.value);
+        
+        txtSpeedVal.innerText = speed.toFixed(1) + ' kts'; tftSpeed.innerText = speed.toFixed(1);
+        let activeBlocks = Math.floor((speed / 15) * MAX_GAUGE_BLOCKS);
+        gaugeBlocksArray.forEach((b, i) => { b.className = 'gauge-segment'; if(i < activeBlocks) { b.classList.add('active'); if(i > 13) b.classList.add('high'); }});
+
+        let heelDir = heel < 0 ? 'L' : (heel > 0 ? 'R' : ''); let absHeel = Math.abs(heel).toFixed(1);
+        txtHeelVal.innerHTML = `${absHeel}&deg; ${heelDir}`; tftHeelText.innerHTML = `HEEL: ${absHeel}&deg; ${heelDir}`;
+        if(Math.abs(heel) > 20) { tftHeelText.style.color = 'var(--tft-alert)'; tftHeelBubble.style.background = 'var(--tft-alert)'; } else { tftHeelText.style.color = 'var(--tft-warn)'; tftHeelBubble.style.background = 'var(--tft-warn)'; }
+        tftHeelBubble.style.left = `${50 + (heel * (40 / 30))}%`;
+
+        txtHdgVal.innerHTML = `${padZero(hdg)}&deg;`; tftHdgText.innerHTML = `HDG: ${padZero(hdg)}&deg;`;
+        let diff = hdg - 45; if (diff > 180) diff -= 360; if (diff < -180) diff += 360;
+        if (diff === 0) { tftShiftStatus.innerHTML = "NEUTRAL (0&deg;)"; tftShiftStatus.className = "bottom-value"; tftShiftStatus.style.color = "var(--tft-text)"; } 
+        else if (diff > 0) { tftShiftStatus.innerHTML = `LIFT (+${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-lift"; } 
+        else { tftShiftStatus.innerHTML = `HEADER (${diff}&deg;)`; tftShiftStatus.className = "bottom-value val-header"; }
+    }
+    ctrlSpeed.addEventListener('input', updateSimulation); ctrlHeel.addEventListener('input', updateSimulation); ctrlHdg.addEventListener('input', updateSimulation);
+    updateSimulation();
 </script>
 
 </body>
