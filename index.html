@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +42,26 @@ body{
     overflow-x:hidden;
     -webkit-font-smoothing: antialiased;
 }
+
+/* ========================= */
+/* SCROLL REVEAL ANIMATIONS */
+/* ========================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays for grids */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
 
 /* ========================= */
 /* NAVBAR */
@@ -435,7 +454,7 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cur
     border-radius: 24px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s, transform 0.8s;
     backdrop-filter: blur(10px);
 }
 
@@ -444,7 +463,6 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cur
     border-color: rgba(53, 182, 255, 0.3);
 }
 
-/* Mouse tracking glow effect */
 .feature-glow {
     position: absolute;
     width: 400px;
@@ -540,17 +558,22 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cur
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
 }
 
-.team-image-wrapper img {
+/* Specific styling for the Logo so it isn't cropped */
+.team-logo-img {
+    width: 75%; 
+    height: 75%;
+    object-fit: contain; 
+}
+
+/* Specific styling for the Action Shot so it fills the frame beautifully */
+.team-action-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-}
-
-.team-image-wrapper img.action-shot {
-    object-position: 25% 5%; 
+    object-position: 25% 10%; 
 }
 
 /* ========================= */
@@ -801,7 +824,7 @@ footer{
 </nav>
 
 <section class="hero">
-    <div class="hero-content">
+    <div class="hero-content reveal">
         <div class="hero-tag">Entering Beta Fall 2026</div>
         <h1>Pro-Level Telemetry.<br>High School Budget.</h1>
         <p>A tactical marine instrument built specifically for developing athletes. Track tack/gybe speed loss, optimize heel angles, and stop relying on subjective coaching guesses.</p>
@@ -814,7 +837,7 @@ footer{
 
 <section class="mission-wrapper" id="mission">
     <div class="mission-grid">
-        <div class="mission-text">
+        <div class="mission-text reveal">
             <span class="label">The Market Gap</span>
             <h2>Bridging the $4,200 Coaching Divide.</h2>
             <p>Right now, over 15,000 young sailors across 850 national high school programs are forced to rely entirely on subjective visual coaching. Why?</p>
@@ -822,7 +845,7 @@ footer{
             <p style="color: var(--text-main); font-weight: 600; margin-top: 20px;">Stop losing 30-150 seconds per race to unmeasured tacking speed drops.</p>
         </div>
 
-        <div class="pricing-card">
+        <div class="pricing-card reveal delay-1">
             <div class="pricing-header">
                 <h3>Target Retail Price</h3>
                 <div class="price"><span>$</span>499</div>
@@ -850,7 +873,7 @@ footer{
 </section>
 
 <section id="simulator">
-    <div class="simulator-wrapper">
+    <div class="simulator-wrapper reveal">
         <div class="tft-bezel">
             <div class="tft-screen">
                 <div class="tft-row tft-header">
@@ -883,7 +906,7 @@ footer{
             </div>
         </div>
 
-        <div class="controls-panel">
+        <div class="controls-panel reveal delay-1">
             <h3>Test The Hardware Interface</h3>
             <p>We're building a sunlight-readable 320x480 TFT display. Use the sliders below to see how the tactical software processes environmental data.</p>
             <div class="control-group">
@@ -912,11 +935,13 @@ footer{
 </section>
 
 <section class="section" id="features">
-    <h2 class="section-title">Everything You Need. Nothing You Don't.</h2>
-    <p class="section-subtitle">We stripped away the bloated features of yacht-racing computers to focus entirely on the metrics that actually make dinghy sailors faster.</p>
+    <div class="reveal">
+        <h2 class="section-title">Everything You Need. Nothing You Don't.</h2>
+        <p class="section-subtitle">We stripped away the bloated features of yacht-racing computers to focus entirely on the metrics that actually make dinghy sailors faster.</p>
+    </div>
 
     <div class="features-grid" id="featuresGrid">
-        <div class="feature-card">
+        <div class="feature-card reveal delay-1">
             <div class="feature-glow"></div>
             <div class="feature-content">
                 <div class="feature-icon-wrapper">
@@ -929,7 +954,7 @@ footer{
             </div>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal delay-2">
             <div class="feature-glow"></div>
             <div class="feature-content">
                 <div class="feature-icon-wrapper">
@@ -944,7 +969,7 @@ footer{
             </div>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal delay-3">
             <div class="feature-glow"></div>
             <div class="feature-content">
                 <div class="feature-icon-wrapper">
@@ -961,22 +986,24 @@ footer{
 </section>
 
 <section class="team-section" id="about">
-    <h2 class="section-title">Built by Sailors, For Sailors.</h2>
-    <p class="section-subtitle">SailSense isn't built by a massive corporate tech company. It was born right on the water, out of the real-world frustrations of high school racing.</p>
+    <div class="reveal">
+        <h2 class="section-title">Built by Sailors, For Sailors.</h2>
+        <p class="section-subtitle">SailSense isn't built by a massive corporate tech company. It was born right on the water, out of the real-world frustrations of high school racing.</p>
+    </div>
     
-    <div class="team-grid">
+    <div class="team-grid reveal delay-1">
         <div class="team-image-wrapper">
-            <img src="ArrowheadSailingTeam.png" alt="Arrowhead High School Sailing Team Logo">
+            <img src="ArrowheadSailingTeam.png" alt="Arrowhead High School Sailing Team Logo" class="team-logo-img">
         </div>
         
         <div class="team-image-wrapper">
-            <img src="MidTackShot.png" alt="420 Dinghy Mid-Maneuver Action Shot" class="action-shot">
+            <img src="MidTackShot.png" alt="420 Dinghy Mid-Maneuver Action Shot" class="team-action-img">
         </div>
     </div>
 </section>
 
 <section class="cta-section" id="waitlist">
-    <div class="cta-box">
+    <div class="cta-box reveal">
         <h2>Secure Early Access.</h2>
         <p>We are currently engineering the final hardware prototype. Join the exclusive waitlist to secure pre-order pricing and beta-testing opportunities.</p>
         
@@ -991,7 +1018,7 @@ footer{
 </section>
 
 <section class="contact-section" id="contact">
-    <div class="contact-wrapper">
+    <div class="contact-wrapper reveal">
         <h3>Have Questions? Get in Touch.</h3>
         <p>Want to learn more about the prototype or interested in testing SailSense for your high school team? Reach out directly.</p>
         
@@ -1015,17 +1042,34 @@ footer{
 </section>
 
 <footer>
-    <div class="qr-container">
+    <div class="qr-container reveal">
         <div class="qr-box">
             <img src="https_jomamalazy_github_io_SailSense_.png" alt="Scan to view SailSense on Mobile">
         </div>
         <span class="qr-text">Scan to view on mobile or share with your team.</span>
     </div>
     
-    <p style="margin-top: 15px;">&copy; 2026 SailSense. Designed for the next generation of competitive sailors.</p>
+    <p class="reveal delay-1" style="margin-top: 15px;">&copy; 2026 SailSense. Designed for the next generation of competitive sailors.</p>
 </footer>
 
 <script>
+    // --- SCROLL REVEAL ANIMATION (INTERSECTION OBSERVER) ---
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Stop observing once it's revealed
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.1, // Trigger when 10% of the element is visible
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
     // --- FORMSPREE EMAIL INTEGRATION ---
     const formspreeEndpoint = "https://formspree.io/f/mnjrwldb";
 
