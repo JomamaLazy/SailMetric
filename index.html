@@ -528,7 +528,6 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cur
     gap: 40px;
     max-width: 1000px;
     margin: 0 auto;
-    align-items: center;
 }
 
 .team-image-wrapper {
@@ -550,15 +549,8 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cur
     display: block;
 }
 
-.logo-wrapper {
-    background: #ffffff; 
-    padding: 40px;
-}
-
-.logo-wrapper img {
-    width: 80%;
-    height: auto;
-    object-fit: contain;
+.team-image-wrapper img.action-shot {
+    object-position: 25% 5%; 
 }
 
 /* ========================= */
@@ -973,12 +965,12 @@ footer{
     <p class="section-subtitle">SailSense isn't built by a massive corporate tech company. It was born right on the water, out of the real-world frustrations of high school racing.</p>
     
     <div class="team-grid">
-        <div class="team-image-wrapper logo-wrapper">
+        <div class="team-image-wrapper">
             <img src="ArrowheadSailingTeam.png" alt="Arrowhead High School Sailing Team Logo">
         </div>
         
         <div class="team-image-wrapper">
-            <img src="MidTackShot.png" alt="420 Dinghy Mid-Maneuver Action Shot">
+            <img src="MidTackShot.png" alt="420 Dinghy Mid-Maneuver Action Shot" class="action-shot">
         </div>
     </div>
 </section>
