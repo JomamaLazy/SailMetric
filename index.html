@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,15 +110,15 @@ nav{
 }
 
 /* ========================= */
-/* HERO - MARKET FOCUSED */
+/* HERO */
 /* ========================= */
 
 .hero{
     min-height:100vh;
     background: 
         radial-gradient(circle at 80% 20%, rgba(53, 182, 255, 0.15) 0%, transparent 50%),
-        linear-gradient(180deg, rgba(4,13,22,0.3) 0%, rgba(4,13,22,1) 100%),
-        url('https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?q=80&w=2000&auto=format&fit=crop');
+        linear-gradient(180deg, rgba(4,13,22,0.4) 0%, rgba(4,13,22,1) 100%),
+        url('https://images.unsplash.com/photo-1530531393604-5853eeebbbdc?q=80&w=2000&auto=format&fit=crop');
     background-size:cover;
     background-position:center;
     display:flex;
@@ -345,70 +346,6 @@ nav{
 }
 
 /* ========================= */
-/* FEATURES */
-/* ========================= */
-
-.section{
-    padding:120px 8%;
-}
-
-.section-title{
-    text-align:center;
-    font-size:3rem;
-    margin-bottom:20px;
-    font-weight:800;
-    letter-spacing: -1px;
-}
-
-.section-subtitle{
-    text-align:center;
-    max-width:700px;
-    margin:0 auto 80px;
-    color: var(--text-muted);
-    font-size: 1.15rem;
-    line-height:1.7;
-}
-
-.features-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.feature-card{
-    background: var(--bg-card);
-    border:1px solid rgba(255,255,255,0.04);
-    padding:45px 35px;
-    border-radius:24px;
-    transition: var(--transition);
-}
-
-.feature-card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(53,182,255,0.3);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-.feature-icon{
-    font-size:2.5rem;
-    margin-bottom:24px;
-}
-
-.feature-card h3{
-    font-size:1.4rem;
-    margin-bottom:14px;
-    font-weight: 800;
-}
-
-.feature-card p{
-    color: var(--text-muted);
-    line-height:1.7;
-    font-size: 1rem;
-}
-
-/* ========================= */
 /* TFT SIMULATOR SECTION */
 /* ========================= */
 
@@ -418,9 +355,8 @@ nav{
     align-items: center;
     gap: 60px;
     flex-wrap: wrap;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: 100px 8%;
-    border-top: 1px solid rgba(255,255,255,0.03);
     border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
@@ -460,6 +396,172 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px
 input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 2px; }
 
 /* ========================= */
+/* INTERACTIVE FEATURES */
+/* ========================= */
+
+.section{
+    padding:120px 8% 60px;
+    background: var(--bg-secondary);
+}
+
+.section-title{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:20px;
+    font-weight:800;
+    letter-spacing: -1px;
+}
+
+.section-subtitle{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 80px;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    line-height:1.7;
+}
+
+.features-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: rgba(17, 37, 56, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(53, 182, 255, 0.3);
+}
+
+/* Mouse tracking glow effect */
+.feature-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(53,182,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.feature-card:hover .feature-glow {
+    opacity: 1;
+}
+
+.feature-content {
+    padding: 45px 35px;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+}
+
+.feature-icon-wrapper {
+    width: 65px;
+    height: 65px;
+    background: rgba(53, 182, 255, 0.05);
+    border: 1px solid rgba(53, 182, 255, 0.15);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    transition: var(--transition);
+}
+
+.feature-icon-wrapper svg {
+    width: 30px;
+    height: 30px;
+    stroke: var(--accent);
+    transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon-wrapper {
+    background: rgba(53, 182, 255, 0.15);
+    box-shadow: 0 0 25px rgba(53, 182, 255, 0.25);
+    transform: scale(1.05);
+    border-color: rgba(53, 182, 255, 0.4);
+}
+
+.feature-card:hover .feature-icon-wrapper svg {
+    stroke: var(--text-main);
+    transform: scale(1.1);
+}
+
+.feature-card h3{
+    font-size:1.4rem;
+    margin-bottom:14px;
+    font-weight: 800;
+}
+
+.feature-card p{
+    color: var(--text-muted);
+    line-height:1.7;
+    font-size: 1rem;
+}
+
+/* ========================= */
+/* TEAM / ROOTS SHOWCASE */
+/* ========================= */
+
+.team-section {
+    padding: 100px 8% 120px;
+    background: var(--bg-primary);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.team-image-wrapper {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    aspect-ratio: 4/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.logo-wrapper {
+    background: #ffffff; 
+    padding: 40px;
+}
+
+.logo-wrapper img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ========================= */
 /* WAITLIST / CTA */
 /* ========================= */
 
@@ -467,6 +569,7 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cur
     padding: 100px 8% 60px;
     display:flex;
     justify-content:center;
+    background: var(--bg-secondary);
 }
 
 .cta-box{
@@ -532,9 +635,10 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cur
 /* ========================= */
 
 .contact-section {
-    padding: 0 8% 100px;
+    padding: 60px 8% 100px;
     display: flex;
     justify-content: center;
+    background: var(--bg-secondary);
 }
 
 .contact-wrapper {
@@ -624,7 +728,7 @@ footer{
     color: #64748b;
     font-size: 0.9rem;
     border-top: 1px solid rgba(255,255,255,0.03);
-    background: var(--bg-secondary);
+    background: var(--bg-primary); 
 }
 
 .qr-container {
@@ -682,6 +786,7 @@ footer{
     .hero h1 { font-size: 3.2rem; }
     .hero p { margin: 0 auto; }
     .hero-buttons { justify-content: center; }
+    .team-grid { grid-template-columns: 1fr; }
     .waitlist-form { flex-direction: column; }
     .cta-box { padding: 50px 30px; }
     .contact-form .form-row { flex-direction: column; }
@@ -695,7 +800,9 @@ footer{
     <a href="#" class="logo">SAIL<span>SENSE</span></a>
     <div class="nav-links">
         <a href="#mission">The Why</a>
+        <a href="#simulator">Simulator</a>
         <a href="#features">Tech Specs</a>
+        <a href="#about">Our Roots</a>
         <a href="#contact">Contact</a>
         <a href="#waitlist" class="nav-btn">Join Waitlist</a>
     </div>
@@ -746,31 +853,6 @@ footer{
                 <li>Waterproof IPX7 Enclosure</li>
                 <li>Designed for 420s & FJs</li>
             </ul>
-        </div>
-    </div>
-</section>
-
-<section class="section" id="features">
-    <h2 class="section-title">Everything You Need. Nothing You Don't.</h2>
-    <p class="section-subtitle">We stripped away the bloated features of yacht-racing computers to focus entirely on the metrics that actually make dinghy sailors faster.</p>
-
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">⏱️</div>
-            <h3>Maneuver Speed Analytics</h3>
-            <p>Quantify exactly how much speed you lose through a tack or gybe. Instantly know if a maneuver was a net-gain or a net-loss.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">📐</div>
-            <h3>Mechanical Heel Tracking</h3>
-            <p>Built-in IMUs measure your boat's heel angle in real-time. Keep the boat flat, maximize the waterline, and visually track stability.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">🧭</div>
-            <h3>Tactical Compass Shifts</h3>
-            <p>Automated lift and header detection. Lock in a baseline True Wind Direction and let the display tell you when the wind shifts.</p>
         </div>
     </div>
 </section>
@@ -833,6 +915,70 @@ footer{
                 </div>
                 <input type="range" id="ctrl-hdg" min="0" max="359" step="1" value="45">
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="features">
+    <h2 class="section-title">Everything You Need. Nothing You Don't.</h2>
+    <p class="section-subtitle">We stripped away the bloated features of yacht-racing computers to focus entirely on the metrics that actually make dinghy sailors faster.</p>
+
+    <div class="features-grid" id="featuresGrid">
+        <div class="feature-card">
+            <div class="feature-glow"></div>
+            <div class="feature-content">
+                <div class="feature-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <h3>Maneuver Speed Analytics</h3>
+                <p>Quantify exactly how much speed you lose through a tack or gybe. Instantly know if a maneuver was a net-gain or a net-loss.</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-glow"></div>
+            <div class="feature-content">
+                <div class="feature-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2.5a4 4 0 0 1 4 4v9a4 4 0 0 1-8 0v-9a4 4 0 0 1 4-4Z"></path>
+                        <path d="M8 15.5v1.5a4 4 0 0 0 8 0v-1.5"></path>
+                        <path d="M12 21.5v-3"></path>
+                    </svg>
+                </div>
+                <h3>Mechanical Heel Tracking</h3>
+                <p>Built-in IMUs measure your boat's heel angle in real-time. Keep the boat flat, maximize the waterline, and visually track stability.</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-glow"></div>
+            <div class="feature-content">
+                <div class="feature-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                    </svg>
+                </div>
+                <h3>Tactical Compass Shifts</h3>
+                <p>Automated lift and header detection. Lock in a baseline True Wind Direction and let the display tell you when the wind shifts.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section" id="about">
+    <h2 class="section-title">Built by Sailors, For Sailors.</h2>
+    <p class="section-subtitle">SailSense isn't built by a massive corporate tech company. It was born right on the water, out of the real-world frustrations of high school racing.</p>
+    
+    <div class="team-grid">
+        <div class="team-image-wrapper logo-wrapper">
+            <img src="ArrowheadSailingTeam.png" alt="Arrowhead High School Sailing Team Logo">
+        </div>
+        
+        <div class="team-image-wrapper">
+            <img src="MidTackShot.png" alt="420 Dinghy Mid-Maneuver Action Shot">
         </div>
     </div>
 </section>
@@ -938,6 +1084,18 @@ footer{
             }
         }).catch(error => {
             alert("Oops! Network error. Please try again.");
+        });
+    });
+
+    // --- MOUSE TRACKING GLOW FOR FEATURES ---
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const glow = card.querySelector('.feature-glow');
+            glow.style.left = `${x}px`;
+            glow.style.top = `${y}px`;
         });
     });
 
