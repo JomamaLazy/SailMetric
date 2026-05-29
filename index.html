@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sail Analyzer | Affordable Sailing Telemetry</title>
+<title>SailSense | Affordable Sailing Telemetry</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -425,7 +425,7 @@ nav{
 }
 
 .tft-bezel { background: #1a1a1a; padding: 25px 15px 40px 15px; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.1); position: relative; border: 1px solid #333; }
-.tft-bezel::after { content: "SAIL ANALYZER"; position: absolute; bottom: 12px; width: 100%; left: 0; text-align: center; color: #444; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; }
+.tft-bezel::after { content: "SAILSENSE"; position: absolute; bottom: 12px; width: 100%; left: 0; text-align: center; color: #444; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; }
 .tft-screen { width: 320px; height: 480px; background: var(--tft-bg); border: 2px solid var(--tft-border); font-family: 'JetBrains Mono', monospace; color: var(--tft-text); display: flex; flex-direction: column; overflow: hidden; position: relative; }
 .tft-row { border-bottom: 2px solid var(--tft-border); display: flex; }
 .tft-header { height: 40px; align-items: center; font-size: 11px; font-weight: bold; }
@@ -692,7 +692,7 @@ footer{
 <body>
 
 <nav>
-    <a href="#" class="logo">SAIL<span>ANALYZER</span></a>
+    <a href="#" class="logo">SAIL<span>SENSE</span></a>
     <div class="nav-links">
         <a href="#mission">The Why</a>
         <a href="#features">Tech Specs</a>
@@ -719,7 +719,7 @@ footer{
             <span class="label">The Market Gap</span>
             <h2>Bridging the $4,200 Coaching Divide.</h2>
             <p>Right now, over 15,000 young sailors across 850 national high school programs are forced to rely entirely on subjective visual coaching. Why?</p>
-            <p>Because professional tactical data displays cost upwards of $5,000—a price tag that completely alienates club and youth sailing gear budgets. Sail Analyzer is an engineering project turned product, designed specifically to deliver professional-grade, maneuver-specific analytics to the middle market.</p>
+            <p>Because professional tactical data displays cost upwards of $5,000—a price tag that completely alienates club and youth sailing gear budgets. SailSense is an engineering project turned product, designed specifically to deliver professional-grade, maneuver-specific analytics to the middle market.</p>
             <p style="color: var(--text-main); font-weight: 600; margin-top: 20px;">Stop losing 30-150 seconds per race to unmeasured tacking speed drops.</p>
         </div>
 
@@ -735,7 +735,7 @@ footer{
                     <strong>$3,000 - $5,000</strong>
                 </div>
                 <div class="vs-item us">
-                    <span>Sail Analyzer</span>
+                    <span>SailSense</span>
                     <strong>Under $500</strong>
                 </div>
             </div>
@@ -843,7 +843,7 @@ footer{
         <p>We are currently engineering the final hardware prototype. Join the exclusive waitlist to secure pre-order pricing and beta-testing opportunities.</p>
         
         <form class="waitlist-form" id="waitlistForm">
-            <input type="email" placeholder="Enter your email address..." required>
+            <input type="email" name="email" placeholder="Enter your email address..." required>
             <button type="submit" class="primary-btn">Join Waitlist</button>
         </form>
         <div class="success-message" id="waitlistSuccess">
@@ -855,7 +855,7 @@ footer{
 <section class="contact-section" id="contact">
     <div class="contact-wrapper">
         <h3>Have Questions? Get in Touch.</h3>
-        <p>Want to learn more about the prototype or interested in testing the Sail Analyzer for your high school team? Reach out directly.</p>
+        <p>Want to learn more about the prototype or interested in testing SailSense for your high school team? Reach out directly.</p>
         
         <div class="contact-links">
             <a href="mailto:jojocavanaugh@outlook.com" class="secondary-btn">✉️ jojocavanaugh@outlook.com</a>
@@ -864,10 +864,10 @@ footer{
 
         <form class="contact-form" id="contactForm">
             <div class="form-row">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
             </div>
-            <textarea placeholder="How can I help you?" required></textarea>
+            <textarea name="message" placeholder="How can I help you?" required></textarea>
             <button type="submit" class="primary-btn" style="width: 100%; border-radius: 16px;">Send Message</button>
         </form>
         <div class="contact-success" id="contactSuccess">
@@ -879,23 +879,41 @@ footer{
 <footer>
     <div class="qr-container">
         <div class="qr-box">
-            <img src="https_jomamalazy_github_io_SailSense_.png" alt="Scan to view Sail Analyzer on Mobile">
+            <img src="https_jomamalazy_github_io_SailSense_.png" alt="Scan to view SailSense on Mobile">
         </div>
         <span class="qr-text">Scan to view on mobile or share with your team.</span>
     </div>
     
-    <p style="margin-top: 15px;">&copy; 2026 Sail Analyzer. Designed for the next generation of competitive sailors.</p>
+    <p style="margin-top: 15px;">&copy; 2026 SailSense. Designed for the next generation of competitive sailors.</p>
 </footer>
 
 <script>
+    // --- FORMSPREE EMAIL INTEGRATION ---
+    const formspreeEndpoint = "https://formspree.io/f/mnjrwldb";
+
     // Waitlist Form
     const waitlistForm = document.getElementById('waitlistForm');
     const waitlistSuccess = document.getElementById('waitlistSuccess');
 
     waitlistForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        waitlistForm.style.display = 'none';
-        waitlistSuccess.style.display = 'block';
+        const formData = new FormData(waitlistForm);
+
+        fetch(formspreeEndpoint, {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                waitlistForm.style.display = 'none';
+                waitlistSuccess.style.display = 'block';
+                waitlistForm.reset();
+            } else {
+                alert("Oops! There was a problem submitting your email.");
+            }
+        }).catch(error => {
+            alert("Oops! Network error. Please try again.");
+        });
     });
 
     // Contact Form
@@ -904,11 +922,26 @@ footer{
 
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        contactForm.style.display = 'none';
-        contactSuccess.style.display = 'block';
+        const formData = new FormData(contactForm);
+
+        fetch(formspreeEndpoint, {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                contactForm.style.display = 'none';
+                contactSuccess.style.display = 'block';
+                contactForm.reset();
+            } else {
+                alert("Oops! There was a problem sending your message.");
+            }
+        }).catch(error => {
+            alert("Oops! Network error. Please try again.");
+        });
     });
 
-    // TFT Simulator
+    // --- TFT SIMULATOR ---
     const gaugeContainer = document.getElementById('tft-gauge-container');
     const MAX_GAUGE_BLOCKS = 18;
     for(let i=0; i<MAX_GAUGE_BLOCKS; i++) {
