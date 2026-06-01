@@ -3,8 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SailSense delivers affordable, professional sailing telemetry for high school and youth racing teams. Track tacks, heel angles, and wind shifts with battery-friendly hardware." />
+<meta name="robots" content="index, follow" />
 <title>SailSense | Affordable Sailing Telemetry</title>
-
+<link rel="icon" href="favicon.ico" />
+<link rel="apple-touch-icon" href="favicon.ico" />
+<meta name="theme-color" content="#040d16" />
+<meta property="og:title" content="SailSense | Affordable Sailing Telemetry" />
+<meta property="og:description" content="Pro-level sailing telemetry built for youth and high school racing teams. Get data-driven feedback on every tack, heel, and wind shift." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1530531393604-5853eeebbbdc?q=80&w=1200&auto=format&fit=crop" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SailSense | Affordable Sailing Telemetry" />
+<meta name="twitter:description" content="Pro-level sailing telemetry built for youth and high school racing teams. Get data-driven feedback on every tack, heel, and wind shift." />
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1530531393604-5853eeebbbdc?q=80&w=1200&auto=format&fit=crop" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
@@ -37,10 +49,17 @@ html{
 
 body{
     font-family:'Inter', sans-serif;
-    background: var(--bg-primary);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(53,182,255,0.14) 0%, transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(56,221,149,0.08) 0%, transparent 24%),
+        radial-gradient(circle at 50% 92%, rgba(255,255,255,0.05) 0%, transparent 20%),
+        linear-gradient(180deg, #05131f 0%, #040d16 35%, #02070d 100%);
     color: var(--text-main);
     overflow-x:hidden;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 /* ========================= */
@@ -101,6 +120,23 @@ nav{
     align-items:center;
 }
 
+.nav-toggle {
+    display:none;
+    border:none;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-main);
+    padding: 12px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.nav-toggle:hover {
+    background: rgba(255,255,255,0.14);
+}
+
 .nav-links a{
     text-decoration:none;
     color: var(--text-muted);
@@ -127,26 +163,60 @@ nav{
     transform: translateY(-1px);
 }
 
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: var(--text-main);
+}
+
 /* ========================= */
 /* HERO / TITLE BACKGROUND */
 /* ========================= */
 
 .hero{
     min-height:100vh;
-    background: 
-        radial-gradient(circle at 80% 20%, rgba(53, 182, 255, 0.2) 0%, transparent 50%),
-        linear-gradient(180deg, rgba(4,13,22,0.6) 0%, rgba(4,13,22,1) 100%),
+    position: relative;
+    background:
+        radial-gradient(circle at 18% 12%, rgba(53,182,255,0.22) 0%, transparent 28%),
+        radial-gradient(circle at 82% 20%, rgba(141,224,255,0.14) 0%, transparent 30%),
+        linear-gradient(180deg, rgba(4,13,22,0.75) 0%, rgba(4,13,22,0.98) 100%),
         url('https://images.unsplash.com/photo-1530531393604-5853eeebbbdc?q=80&w=2000&auto=format&fit=crop');
-    background-size:cover;
-    background-position:center;
+    background-size: cover;
+    background-position: center;
     background-attachment: fixed;
     display:flex;
     align-items:center;
     padding:140px 8% 80px;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 70% 25%, rgba(255,255,255,0.08) 0%, transparent 18%),
+        radial-gradient(circle at 28% 72%, rgba(53,182,255,0.08) 0%, transparent 15%);
+    pointer-events: none;
 }
 
 .hero-content{
     max-width:850px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-tag{
@@ -784,6 +854,58 @@ footer{
     letter-spacing: 0.5px;
 }
 
+.footer-share {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    max-width: 760px;
+    margin-bottom: 25px;
+}
+
+.share-copy {
+    color: var(--text-main);
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 640px;
+}
+
+.share-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.share-btn {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: var(--text-main);
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.share-btn:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+}
+
+.share-btn.primary {
+    background: var(--accent);
+    color: #00111d;
+    border-color: transparent;
+}
+
+.share-status {
+    color: #4ade80;
+    font-size: 0.95rem;
+    min-height: 1.2rem;
+}
+
 /* ========================= */
 /* MOBILE RESPONSIVE */
 /* ========================= */
@@ -796,7 +918,10 @@ footer{
 
 @media(max-width:768px){
     nav { padding: 20px 5%; }
-    .nav-links { display: none; }
+    .nav-toggle { display: inline-flex; }
+    .nav-links { display: none; flex-direction: column; width: 100%; gap: 12px; margin-top: 18px; background: rgba(4,13,22,0.95); padding: 18px 20px; border-radius: 24px; backdrop-filter: blur(16px); }
+    .nav-links.mobile-open { display: flex; }
+    .nav-links a { padding: 12px 0; }
     .hero{ padding:140px 5% 80px; text-align: center; }
     .hero h1 { font-size: 3.2rem; }
     .hero p { margin: 0 auto; }
@@ -811,9 +936,10 @@ footer{
 
 <body>
 
-<nav>
+<nav aria-label="Primary navigation">
     <a href="#" class="logo">SAIL<span>SENSE</span></a>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">Menu</button>
+    <div class="nav-links" id="navLinks">
         <a href="#mission">The Why</a>
         <a href="#simulator">Simulator</a>
         <a href="#features">Tech Specs</a>
@@ -1048,6 +1174,25 @@ footer{
         </div>
         <span class="qr-text">Scan to view on mobile or share with your team.</span>
     </div>
+
+    <div class="footer-links reveal delay-1">
+        <div class="footer-link-group">
+            <a href="#mission">The Why</a>
+            <a href="#waitlist">Join Waitlist</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </div>
+    </div>
+
+    <div class="footer-share reveal delay-1">
+        <p class="share-copy">Pass it on! If this isn't for you, sharing our page with others helps us reach the right people.</p>
+        <div class="share-actions">
+            <button id="sharePageBtn" class="share-btn primary">Share this page</button>
+            <button id="copyLinkBtn" class="share-btn">Copy page link</button>
+        </div>
+        <div class="share-status" id="shareStatus"></div>
+    </div>
     
     <p class="reveal delay-1" style="margin-top: 15px;">&copy; 2026 SailSense. Designed for the next generation of competitive sailors.</p>
 </footer>
@@ -1158,6 +1303,55 @@ footer{
         }
         ctrlSpeed.addEventListener('input', updateSimulation); ctrlHeel.addEventListener('input', updateSimulation); ctrlHdg.addEventListener('input', updateSimulation);
         updateSimulation();
+    }
+
+    const sharePageBtn = document.getElementById('sharePageBtn');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    const shareStatus = document.getElementById('shareStatus');
+
+    function updateShareStatus(message) {
+        if (shareStatus) {
+            shareStatus.innerText = message;
+        }
+    }
+
+    if (sharePageBtn) {
+        sharePageBtn.addEventListener('click', () => {
+            const shareData = {
+                title: document.title,
+                text: 'Check out SailSense for affordable sailing telemetry.',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => updateShareStatus('Thanks for sharing!'))
+                    .catch(() => updateShareStatus('If sharing is unavailable, try copying the link below.'));
+            } else {
+                updateShareStatus('Your browser does not support direct share. Use copy link instead.');
+            }
+        });
+    }
+
+    if (copyLinkBtn) {
+        copyLinkBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                updateShareStatus('Link copied to clipboard. Share it with your network!');
+            } catch (err) {
+                updateShareStatus('Could not copy automatically. Please copy the URL from the browser address bar.');
+            }
+        });
+    }
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-open');
+            navToggle.setAttribute('aria-label', navLinks.classList.contains('mobile-open') ? 'Close navigation menu' : 'Open navigation menu');
+        });
     }
 </script>
 
