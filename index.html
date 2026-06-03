@@ -113,10 +113,11 @@ nav{
     transition: var(--transition);
 }
 
-.logo-img {
-    height: 60px;
+.hero-logo {
+    height: 76px;
     width: auto;
     display: block;
+    margin-bottom: 30px;
 }
 
 .logo span {
@@ -927,9 +928,7 @@ footer{
 <body>
 
 <nav aria-label="Primary navigation">
-    <a href="#" class="logo">
-        <img src="SailSense.png" alt="SailSense logo" class="logo-img">
-    </a>
+    <a href="#" class="logo">SAIL<span>SENSE</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">Menu</button>
     <div class="nav-links" id="navLinks">
         <a href="#mission">The Why</a>
@@ -943,6 +942,7 @@ footer{
 
 <section class="hero">
     <div class="hero-content reveal">
+        <img src="SailSense.png" alt="SailSense logo" class="hero-logo">
         <div class="hero-tag">Entering Beta Fall 2026</div>
         <h1>Pro-Level Telemetry.<br>High School Budget.</h1>
         <p>A tactical marine instrument built specifically for developing athletes. Track tack/gybe speed loss, optimize heel angles, and stop relying on subjective coaching guesses.</p>
