@@ -300,6 +300,253 @@ nav{
     border-color: rgba(255,255,255,0.4);
 }
 
+.hero-content {
+    max-width: 760px;
+    padding: 48px 42px;
+    border-radius: 32px;
+    background: rgba(4, 13, 22, 0.82);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+    backdrop-filter: blur(18px);
+}
+
+.hero-headline {
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.hero-logo {
+    height: 90px;
+    width: auto;
+}
+
+.hero h1 {
+    font-size: clamp(3.4rem, 6vw, 4.8rem);
+    max-width: 12ch;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    font-size: 1.12rem;
+    line-height: 1.75;
+    max-width: 720px;
+    color: #d9e5f4;
+}
+
+.hero-buttons {
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+    transform: translateY(-1px);
+}
+
+.nav-btn {
+    box-shadow: 0 16px 35px rgba(53,182,255,0.2);
+}
+
+.mission-wrapper {
+    background: linear-gradient(180deg, rgba(4,13,22,0.96) 0%, rgba(11,26,41,0.98) 100%);
+    padding: 110px 8%;
+    border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.mission-grid {
+    gap: 50px;
+}
+
+.mission-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-card strong {
+    font-size: 1.5rem;
+    color: #fff;
+    display: block;
+}
+
+.stat-card span {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+@media(max-width:768px){
+    .mission-stats {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+    }
+}
+
+.pricing-card {
+    background: rgba(8, 23, 41, 0.95);
+    border: 1px solid rgba(53,182,255,0.15);
+    box-shadow: 0 24px 55px rgba(0,0,0,0.35);
+}
+
+.pricing-header {
+    margin-bottom: 30px;
+}
+
+.vs-market {
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.vs-item {
+    flex: 1;
+    min-width: 160px;
+}
+
+.vs-item span {
+    color: #a0b4ce;
+}
+
+.pricing-benefits li {
+    background: rgba(255,255,255,0.03);
+    padding: 14px 16px;
+    border-radius: 18px;
+}
+
+.section {
+    padding: 120px 8% 80px;
+}
+
+.section-title {
+    font-size: clamp(2.6rem, 5vw, 3.4rem);
+    letter-spacing: -0.75px;
+}
+
+.features-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    min-height: 290px;
+}
+
+.feature-content {
+    padding: 40px 32px;
+}
+
+.feature-icon-wrapper {
+    width: 68px;
+    height: 68px;
+}
+
+.team-section {
+    padding: 90px 8% 120px;
+}
+
+.team-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+}
+
+.team-image-wrapper {
+    min-height: 420px;
+}
+
+.cta-section {
+    padding: 100px 8% 80px;
+}
+
+.cta-box {
+    background: linear-gradient(180deg, rgba(6, 16, 28, 0.96) 0%, rgba(4, 11, 19, 0.99) 100%);
+    border: 1px solid rgba(53,182,255,0.18);
+    padding: 72px 56px;
+}
+
+.cta-box h2 {
+    font-size: clamp(2.8rem, 4vw, 3.4rem);
+}
+
+.waitlist-form {
+    max-width: 640px;
+}
+
+.waitlist-form input {
+    border-radius: 999px;
+}
+
+.contact-section {
+    background: linear-gradient(180deg, rgba(4,13,22,0.95), rgba(11,26,41,0.98));
+    padding: 80px 8% 100px;
+}
+
+.contact-wrapper {
+    max-width: 840px;
+    padding: 40px 40px 20px;
+    border-radius: 32px;
+    background: rgba(7, 16, 28, 0.94);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+}
+
+.contact-links a {
+    min-width: 240px;
+}
+
+.contact-form input, .contact-form textarea {
+    background: rgba(9, 17, 30, 0.92);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+footer {
+    padding: 60px 8% 60px;
+}
+
+.footer-share {
+    max-width: 760px;
+}
+
+.share-btn {
+    min-width: 170px;
+}
+
+.share-btn.primary {
+    background: linear-gradient(135deg, #35b6ff, #60c5ff);
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media(max-width: 992px){
+    .hero-content { padding: 36px 28px; }
+    .hero h1 { font-size: 3.6rem; }
+    .mission-wrapper { padding: 90px 6%; }
+    .cta-box { padding: 60px 35px; }
+}
+
+@media(max-width: 768px){
+    .hero-content { padding: 32px 24px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .feature-content { padding: 32px 28px; }
+    .contact-wrapper { padding: 32px 24px; }
+}
+
 /* ========================= */
 /* THE MISSION / THE WHY */
 /* ========================= */
@@ -968,8 +1215,13 @@ footer{
         <div class="mission-text reveal">
             <span class="label">The Market Gap</span>
             <h2>Bridging the $4,200 Coaching Divide.</h2>
-            <p>Right now, over 15,000 young sailors across 850 national high school programs are forced to rely entirely on subjective visual coaching. Why?</p>
-            <p>Because professional tactical data displays cost upwards of $5,000—a price tag that completely alienates club and youth sailing gear budgets. SailSense is an engineering project turned product, designed specifically to deliver professional-grade, maneuver-specific analytics to the middle market.</p>
+            <p>Right now, over 15,000 young sailors across 850 national high school programs rely on subjective visual coaching instead of real tactical data.</p>
+            <div class="mission-stats">
+                <div class="stat-card"><strong>15k+</strong><span>Youth sailors</span></div>
+                <div class="stat-card"><strong>850+</strong><span>national programs</span></div>
+                <div class="stat-card"><strong>30–150s</strong><span>lost per tack</span></div>
+            </div>
+            <p>Professional tactical data displays are still priced above $5,000, keeping most teams out of reach. SailSense brings the same core metrics to high school and youth fleets at under $500.</p>
             <p style="color: var(--text-main); font-weight: 600; margin-top: 20px;">Stop losing 30-150 seconds per race to unmeasured tacking speed drops.</p>
         </div>
 
@@ -1145,26 +1397,6 @@ footer{
     </div>
 </section>
 
-<footer>
-    <div class="qr-container reveal">
-        <div class="qr-box">
-            <img src="https_jomamalazy_github_io_SailSense_.png" alt="Scan to view SailSense on Mobile">
-        </div>
-        <span class="qr-text">Scan to view on mobile or share with your team.</span>
-    </div>
-
-    <div class="footer-share reveal delay-1">
-        <p class="share-copy">Pass it on! If this isn't for you, sharing our page with others helps us reach the right people.</p>
-        <div class="share-actions">
-            <button id="sharePageBtn" class="share-btn primary">Share this page</button>
-            <button id="copyLinkBtn" class="share-btn">Copy page link</button>
-        </div>
-        <div class="share-status" id="shareStatus"></div>
-    </div>
-    
-    <p class="reveal delay-1" style="margin-top: 15px;">&copy; 2026 SailSense. Designed for the next generation of competitive sailors.</p>
-</footer>
-
 <section class="contact-section" id="contact">
     <div class="contact-wrapper reveal">
         <h3>Have Questions? Get in Touch.</h3>
@@ -1188,6 +1420,26 @@ footer{
         </div>
     </div>
 </section>
+
+<footer>
+    <div class="qr-container reveal">
+        <div class="qr-box">
+            <img src="https_jomamalazy_github_io_SailSense_.png" alt="Scan to view SailSense on Mobile">
+        </div>
+        <span class="qr-text">Scan to view on mobile or share with your team.</span>
+    </div>
+
+    <div class="footer-share reveal delay-1">
+        <p class="share-copy">Pass it on! If this isn't for you, sharing our page with others helps us reach the right people.</p>
+        <div class="share-actions">
+            <button id="sharePageBtn" class="share-btn primary">Share this page</button>
+            <button id="copyLinkBtn" class="share-btn">Copy page link</button>
+        </div>
+        <div class="share-status" id="shareStatus"></div>
+    </div>
+    
+    <p class="reveal delay-1" style="margin-top: 15px;">&copy; 2026 SailSense. Designed for the next generation of competitive sailors.</p>
+</footer>
 
 <script>
     // --- SCROLL REVEAL ANIMATION (INTERSECTION OBSERVER) ---
