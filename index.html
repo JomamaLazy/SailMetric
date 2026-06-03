@@ -301,42 +301,127 @@ nav{
 }
 
 .hero-content {
-    max-width: 760px;
-    padding: 48px 42px;
-    border-radius: 32px;
+    max-width: 1000px;
+    padding: 52px 42px;
+    border-radius: 38px;
     background: rgba(4, 13, 22, 0.82);
     border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 30px 70px rgba(0,0,0,0.4);
-    backdrop-filter: blur(18px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    backdrop-filter: blur(20px);
+}
+
+.hero-top {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.hero-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .hero-headline {
+    display: flex;
+    align-items: center;
     gap: 20px;
-    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 8px;
 }
 
 .hero-logo {
-    height: 90px;
+    height: 72px;
     width: auto;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.05);
+    padding: 8px;
 }
 
 .hero h1 {
-    font-size: clamp(3.4rem, 6vw, 4.8rem);
+    font-size: clamp(3.2rem, 5vw, 4.2rem);
     max-width: 12ch;
-    letter-spacing: -1px;
-    margin-bottom: 24px;
+    letter-spacing: -0.75px;
+    margin-bottom: 0;
 }
 
 .hero p {
-    font-size: 1.12rem;
+    font-size: 1.08rem;
     line-height: 1.75;
     max-width: 720px;
     color: #d9e5f4;
 }
 
 .hero-buttons {
+    display: flex;
+    gap: 18px;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.hero-snapshot {
+    display: grid;
+    gap: 18px;
+}
+
+.snapshot-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    padding: 24px;
+    min-height: 110px;
+}
+
+.snapshot-card span {
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.snapshot-card strong {
+    display: block;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+}
+
+@media(max-width: 980px) {
+    .hero-top {
+        grid-template-columns: 1fr;
+    }
+    .hero-buttons {
+        justify-content: stretch;
+    }
+}
+
+@media(max-width: 768px) {
+    .hero-content {
+        padding: 38px 24px;
+    }
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
 }
 
 .nav-links a {
@@ -1197,15 +1282,45 @@ footer{
 
 <section class="hero">
     <div class="hero-content reveal">
-        <div class="hero-headline">
-            <img src="SailSense.png" alt="SailSense logo" class="hero-logo">
-            <h1>Pro-Level Telemetry.<br>High School Budget.</h1>
+        <div class="hero-top">
+            <div class="hero-copy">
+                <div class="hero-headline">
+                    <img src="SailSense.png" alt="SailSense logo" class="hero-logo">
+                    <div>
+                        <p class="hero-eyebrow">SailSense</p>
+                        <h1>Performance telemetry for youth racing teams.</h1>
+                    </div>
+                </div>
+
+                <div class="hero-tag">Beta launch — Fall 2026</div>
+                <p>Advanced boat-speed, heel-angle, and shift tracking in a rugged, affordable package built for high school and junior sailing programs.</p>
+
+                <div class="hero-buttons">
+                    <a href="#waitlist" class="primary-btn">Join Beta Waitlist</a>
+                    <a href="#simulator" class="secondary-btn">Try Digital Simulator</a>
+                </div>
+            </div>
+
+            <div class="hero-snapshot">
+                <div class="snapshot-card">
+                    <span>Live performance metrics</span>
+                    <strong>Speed, heel, and lift/header shifts in one view.</strong>
+                </div>
+                <div class="snapshot-card">
+                    <span>Designed for youth teams</span>
+                    <strong>Simple, rugged hardware for entry-level budgets.</strong>
+                </div>
+                <div class="snapshot-card">
+                    <span>Ready for regattas</span>
+                    <strong>Sunlight-readable display and waterproof enclosure.</strong>
+                </div>
+            </div>
         </div>
-        <div class="hero-tag">Entering Beta Fall 2026</div>
-        <p>A tactical marine instrument built specifically for developing athletes. Track tack/gybe speed loss, optimize heel angles, and stop relying on subjective coaching guesses.</p>
-        <div class="hero-buttons">
-            <a href="#waitlist" class="primary-btn">Join Beta Waitlist</a>
-            <a href="#simulator" class="secondary-btn">Try Digital Simulator</a>
+
+        <div class="hero-stats">
+            <div class="stat-card"><strong>Under $500</strong><span>target retail price</span></div>
+            <div class="stat-card"><strong>320x480</strong><span>sunlight-readable TFT</span></div>
+            <div class="stat-card"><strong>IPX7</strong><span>waterproof rating</span></div>
         </div>
     </div>
 </section>
