@@ -105,19 +105,27 @@ nav{
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-size:1.4rem;
+    font-size:1.8rem;
     font-weight:900;
-    letter-spacing:3px;
+    letter-spacing:4px;
     color: var(--text-main);
     text-decoration: none;
     transition: var(--transition);
 }
 
+.hero-headline {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
 .hero-logo {
-    height: 76px;
+    height: 110px;
     width: auto;
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 0;
 }
 
 .logo span {
@@ -942,9 +950,11 @@ footer{
 
 <section class="hero">
     <div class="hero-content reveal">
-        <img src="SailSense.png" alt="SailSense logo" class="hero-logo">
+        <div class="hero-headline">
+            <img src="SailSense.png" alt="SailSense logo" class="hero-logo">
+            <h1>Pro-Level Telemetry.<br>High School Budget.</h1>
+        </div>
         <div class="hero-tag">Entering Beta Fall 2026</div>
-        <h1>Pro-Level Telemetry.<br>High School Budget.</h1>
         <p>A tactical marine instrument built specifically for developing athletes. Track tack/gybe speed loss, optimize heel angles, and stop relying on subjective coaching guesses.</p>
         <div class="hero-buttons">
             <a href="#waitlist" class="primary-btn">Join Beta Waitlist</a>
