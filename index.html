@@ -102,12 +102,21 @@ nav{
 }
 
 .logo{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-size:1.4rem;
     font-weight:900;
     letter-spacing:3px;
     color: var(--text-main);
     text-decoration: none;
     transition: var(--transition);
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 .logo span {
@@ -918,7 +927,9 @@ footer{
 <body>
 
 <nav aria-label="Primary navigation">
-    <a href="#" class="logo">SAIL<span>SENSE</span></a>
+    <a href="#" class="logo">
+        <img src="SailSense.png" alt="SailSense logo" class="logo-img">
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">Menu</button>
     <div class="nav-links" id="navLinks">
         <a href="#mission">The Why</a>
