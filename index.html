@@ -926,6 +926,7 @@ footer {
 
 input[type=range] {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     background: transparent;
 }
@@ -1370,7 +1371,7 @@ input[type=range]::-moz-focus-outer {
 }
 
 /* ========================= */
-/* FOOTER & QR CODE */
+/* FOOTER */
 /* ========================= */
 
 footer{
@@ -1384,44 +1385,6 @@ footer{
     font-size: 0.9rem;
     border-top: 1px solid rgba(255,255,255,0.03);
     background: var(--bg-primary); 
-}
-
-.qr-container {
-    margin-bottom: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.qr-box {
-    background: #ffffff;
-    padding: 10px;
-    border-radius: 16px;
-    width: 140px;
-    height: 140px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 2px solid rgba(53,182,255,0.3);
-    transition: var(--transition);
-}
-
-.qr-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(53,182,255,0.2);
-}
-
-.qr-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-}
-
-.qr-text {
-    font-weight: 600;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
 }
 
 .footer-share {
@@ -1750,13 +1713,6 @@ footer{
 </section>
 
 <footer>
-    <div class="qr-container reveal">
-        <div class="qr-box">
-            <img src="https_jomamalazy_github_io_SailSense_.png" alt="Scan to view SailSense on Mobile">
-        </div>
-        <span class="qr-text">Scan to view on mobile or share with your team.</span>
-    </div>
-
     <div class="footer-share reveal delay-1">
         <p class="share-copy">Pass it on! If this isn't for you, sharing our page with others helps us reach the right people.</p>
         <div class="share-actions">
